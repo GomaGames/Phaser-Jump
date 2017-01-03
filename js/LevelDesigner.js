@@ -1,64 +1,52 @@
 /*
 
   level width = 750
-  designer breaks it in 50px chunks
-  15wide
-  level1, 3000px : 40 blocks
+  designer breaks it in 25px chunks
+  30 wide
+  level1,
 
   ## Should dynamically set the game vertical bounds, remove from CFG
 
   level format
 
-`---------------
+`-----------------------------|
+     _______                  |
+                              |
+                              |
+                              |
+                              |
+                              |
+                    _______   |
+                              |
+                              |
+                              |
+     ___________              |
+                              |
+                              |
+                              |
+                ______________| // hero can jump up "8" rows
+                              |
+                              |
+                              |
+________________              |
+                              |
+                              |
+                              |
+------------------------------|
 
+width of game is 750
+______________________________| 25px
 
+_______  1 = 7
+___________  2 = 11
+______________  3 = 14
+________________  4 = 16
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        _      |
-               |
-  ___          |
-               |
-       __      |
-               |
-             __|
-               |
-         __    |
-               |
-     __        |
-               |
- ___           | // hero can jump up "3" rows
-               |
-               |
-               |
----------------|
-
+real dimensions
+1 = 175
+2 = 265
+3 = 340
+4 = 400
 */
 ((Phaser, Game, CFG) => {
   // get or create Game module
@@ -71,62 +59,94 @@
     WALL : '|',
     SPACE : ' ',
   };
-  const COL_WIDTH = 50;
-  const ROW_HEIGHT = 100;
+  const SEGMENTS = {
+    7 : 1,
+    11 : 2,
+    14 : 3,
+    16 : 4
+  };
+  const COL_WIDTH = 25;
+  const ROW_HEIGHT = 50;
   const ROW_OFFSET = 100;
 
   const levels = {
     1 :
-`---------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        _      |
-               |
-  ___          |
-               |
-       __      |
-               |
-             __|
-               |
-____           |
-               |
-     __     ___|
-               |
-               |
- ___           |
-               |
-               |
----------------|` // level 1
+`-----------------------------|
+                              |
+                              |
+                              |
+                              |
+     _______                  |
+                              |
+                              |
+                              |
+                              |
+                              |
+                    _______   |
+                              |
+                              |
+                              |
+     ___________              |
+                              |
+                              |
+                              |
+                ______________|
+                              |
+                              |
+                              |
+________________              |
+                  ___________ |
+                              |
+                              |
+                              |
+                              |
+     _______                  |
+                              |
+                              |
+                              |
+                              |
+                              |
+                    _______   |
+                              |
+                              |
+                              |
+     ___________              |
+                              |
+                              |
+                              |
+                ______________|
+                              |
+                              |
+                              |
+________________              |
+                  ___________ |
+                              |
+                              |
+                              |
+                              |
+     _______                  |
+                              |
+                              |
+                              |
+                              |
+                              |
+                    _______   |
+                              |
+                              |
+                              |
+     ___________              |
+                              |
+                              |
+                              |
+                ______________|
+                              |
+                              |
+                              |
+________________              |
+                              |
+                              |
+                              |
+------------------------------|` // level 1
   };
 
   const spawnPlatform = (game, x, y, size) => {
@@ -147,7 +167,7 @@ ____           |
           return lastPart + curPart;
         } else { // not in sequence
           if( lastPart.length > 0 ){ // end of a sequence
-            spawnPlatform(game, x-lastPart.length, y, lastPart.length);
+            spawnPlatform(game, x-lastPart.length, y, SEGMENTS[lastPart.length]);
           }
           return ''; // reset sequence
         }
@@ -161,9 +181,9 @@ ____           |
     }
 
     // spawn the floor
-    spawnPlatform(game, -2, -1, 4);
+    spawnPlatform(game, -3, -1, 4);
     spawnPlatform(game, 6, -1, 4);
-    spawnPlatform(game, 14, -1, 4);
+    spawnPlatform(game, 15, -1, 4);
 
     let level = levels[levelId];
     // ignore top and bottom rows, always have a floor
