@@ -13,7 +13,7 @@
     STAGE_WIDTH,
     STAGE_HEIGHT,
     GAME_WIDTH : STAGE_WIDTH,
-    GAME_HEIGHT : STAGE_HEIGHT*10,
+    GAME_HEIGHT : null, // set by LevelDesigner load
     GRAVITY : 9750,
     CAMERA_LERP : 0.25,
     ASSETS : {
