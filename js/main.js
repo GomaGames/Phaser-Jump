@@ -10,6 +10,9 @@
     game.physics.arcade.gravity.y = CFG.GRAVITY;
     game.stage.backgroundColor = CFG.BG_COLOR;
     hero = new Game.Hero(game);
+
+    // add some platforms
+    new Game.Platform(game, 0, 200, 4);
   };
 
   const update = _ => {
