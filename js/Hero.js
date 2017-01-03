@@ -17,7 +17,6 @@
       this.sprite = this.game.add.sprite(x, y, CFG.ASSETS.GFX);
       this.sprite.scale.set(SCALE);
       this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
-      this.sprite.body.collideWorldBounds = true;
       this.animations = {
         idle : this.sprite.animations.add('idle', [ 'hero-idle-1.png', 'hero-idle-2.png' ]),
       };
@@ -53,6 +52,13 @@
       if (Game.cursors.up.isDown && this.sprite.body.touching.down && hitPlatform)
       {
         this.sprite.body.velocity.y = -JUMP_VELOCITY;
+      }
+
+      // wrap around stage
+      if(this.sprite.x > CFG.GAME_WIDTH){
+        this.sprite.x = -this.sprite.width;
+      } else if(this.sprite.x < -this.sprite.width){
+        this.sprite.x = CFG.GAME_WIDTH;
       }
 
     }

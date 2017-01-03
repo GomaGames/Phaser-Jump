@@ -28,10 +28,13 @@
     platforms.push(p); // gross, fix this
     Game.platformsGroup.add(p.sprite);
 
-    p = new Game.Platform(game, 0, 80, 4);
+    p = new Game.Platform(game, -100, 80, 4);
     platforms.push(p); // gross, fix this
     Game.platformsGroup.add(p.sprite);
-    p = new Game.Platform(game, 400, 80, 4);
+    p = new Game.Platform(game, 300, 80, 4);
+    platforms.push(p); // gross, fix this
+    Game.platformsGroup.add(p.sprite);
+    p = new Game.Platform(game, 700, 80, 2);
     platforms.push(p); // gross, fix this
     Game.platformsGroup.add(p.sprite);
 
