@@ -12,7 +12,8 @@
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.physics.arcade.gravity.y = CFG.GRAVITY;
     game.stage.backgroundColor = CFG.BG_COLOR;
-    hero = new Game.Hero(game, 500, 200);
+
+    cursors = game.input.keyboard.createCursorKeys();
 
     // add some platforms
     platformsGroup = game.add.group();
@@ -20,24 +21,21 @@
     let p = new Game.Platform(game, 0, 200, 4);
     platforms.push(p); // gross, fix this
     platformsGroup.add(p.sprite);
-    p = new Game.Platform(game, 500, 480, 4);
+    p = new Game.Platform(game, 550, 880, 4);
+    platforms.push(p); // gross, fix this
+    platformsGroup.add(p.sprite);
+    p = new Game.Platform(game, 300, 480, 4);
     platforms.push(p); // gross, fix this
     platformsGroup.add(p.sprite);
 
-    p = new Game.Platform(game, 0, 40, 4);
+    p = new Game.Platform(game, 0, 80, 4);
     platforms.push(p); // gross, fix this
     platformsGroup.add(p.sprite);
-    p = new Game.Platform(game, 200, 40, 4);
-    platforms.push(p); // gross, fix this
-    platformsGroup.add(p.sprite);
-    p = new Game.Platform(game, 400, 40, 4);
-    platforms.push(p); // gross, fix this
-    platformsGroup.add(p.sprite);
-    p = new Game.Platform(game, 600, 40, 4);
+    p = new Game.Platform(game, 400, 80, 4);
     platforms.push(p); // gross, fix this
     platformsGroup.add(p.sprite);
 
-    cursors = game.input.keyboard.createCursorKeys();
+    hero = new Game.Hero(game, 500, CFG.GAME_HEIGHT - 200);
   };
 
   const update = _ => {

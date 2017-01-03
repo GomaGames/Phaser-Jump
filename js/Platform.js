@@ -4,7 +4,7 @@
     Game = window.Game = {};
   }
 
-  const SCALE = 0.5;
+  const SCALE = 1;
   const ATLAS_LABELS = {
     1 : 'platform-1.png',
     2 : 'platform-2.png',

@@ -4,7 +4,8 @@
     Game = window.Game = {};
   }
 
-  const SCALE = 0.5;
+  const SCALE = 1;
+  const MOVE_SPEED = 1300;
   const ANIMATIONS = {
     IDLE_SPEED : 8,
   };
@@ -20,8 +21,18 @@
         idle : this.sprite.animations.add('idle', [ 'hero-idle-1.png', 'hero-idle-2.png' ]),
       };
 
+      // allows passing through platforms
+      // #TODO this will be bad for checking other objects though
+      this.sprite.body.checkCollision.up = false;
+
       // start with idle animation
       this.animations.idle.play(ANIMATIONS.IDLE_SPEED, true);
+
+      this.sprite.update = this.update;
+    }
+
+    update(){
+
     }
   };
 
