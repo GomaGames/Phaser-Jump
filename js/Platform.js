@@ -16,6 +16,7 @@
 
     /*
      * y is the height from the BOTTOM of the stage
+     * only the top edge should be collidable
      *
      */
     constructor(game, x, y, size){
@@ -27,6 +28,7 @@
       this.sprite.scale.set(SCALE);
       this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
       this.sprite.body.allowGravity = false;
+      this.sprite.body.immovable = true;
     }
   };
 
