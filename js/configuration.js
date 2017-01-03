@@ -9,6 +9,7 @@
     BG_COLOR : '#F9F99E',
     GAME_WIDTH : 750,
     GAME_HEIGHT : 1334,
+    GRAVITY : 9750,
     ASSETS : {
       GFX : 'GFX',
       ATLAS_PNG_PATH : '/assets/texture-atlas/jump.png',
