@@ -20,6 +20,7 @@
       this.sprite = this.game.add.sprite(x, y, CFG.ASSETS.GFX);
       this.sprite.scale.set(SCALE);
       this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
+      this.sprite.body.setSize(30, 80, 52, 25);
       this.animations = {
         idle : this.sprite.animations.add('idle', [ 'hero-idle-1.png', 'hero-idle-2.png' ]),
         left : this.sprite.animations.add('left', [ 'hero-left-1.png', 'hero-left-2.png' ]),
