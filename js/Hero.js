@@ -10,9 +10,9 @@
   };
 
   Game.Hero = class{
-    constructor(game){
+    constructor(game, x, y){
       this.game = game;
-      this.sprite = this.game.add.sprite(100, 100, CFG.ASSETS.GFX);
+      this.sprite = this.game.add.sprite(x, y, CFG.ASSETS.GFX);
       this.sprite.scale.set(SCALE);
       this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
       this.sprite.body.collideWorldBounds = true;

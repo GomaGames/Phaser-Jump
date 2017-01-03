@@ -11,7 +11,7 @@
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.physics.arcade.gravity.y = CFG.GRAVITY;
     game.stage.backgroundColor = CFG.BG_COLOR;
-    hero = new Game.Hero(game);
+    hero = new Game.Hero(game, 500, 200);
 
     // add some platforms
     platformsGroup = game.add.group();
