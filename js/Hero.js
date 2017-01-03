@@ -4,6 +4,7 @@
     Game = window.Game = {};
   }
 
+  const SCALE = 0.5;
   const ANIMATIONS = {
     IDLE_SPEED : 8,
   };
@@ -12,7 +13,9 @@
     constructor(game){
       this.game = game;
       this.sprite = this.game.add.sprite(100, 100, CFG.ASSETS.GFX);
-      this.sprite.scale.set(0.5);
+      this.sprite.scale.set(SCALE);
+      this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
+      this.sprite.body.collideWorldBounds = true;
       this.animations = {
         idle : this.sprite.animations.add('idle', [ 'hero-idle-1.png', 'hero-idle-2.png' ]),
       };
