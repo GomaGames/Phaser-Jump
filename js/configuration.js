@@ -1,9 +1,12 @@
-(window => {
+(Game => {
   // get or create our Game module
-  window.Game = window.Game || {};
+  if( Game === undefined ){
+    Game = window.Game = {};
+  }
 
-  window.Game.Configuration = {
+  Game.Configuration = {
     GAME_CONTAINER_ID : 'game-container',
+    BG_COLOR : '#F9F99E',
     GAME_WIDTH : 750,
     GAME_HEIGHT : 1334,
     ASSETS : {
@@ -13,4 +16,4 @@
     }
   };
 
-})(window);
+})(window.Game);
