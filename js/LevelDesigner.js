@@ -76,6 +76,16 @@ real dimensions
                               |
                               |
                               |
+_______     _______    _______|
+                              |
+                              |
+                              |
+                              |
+     _______                  |
+                              |
+                              |
+                              |
+                              |
      _______                  |
                               |
                               |
@@ -180,18 +190,22 @@ ________________              |
       throw RangeError(`Level ID:${levelId} has not yet been designed.`);
     }
 
-    // spawn the floor
-    spawnPlatform(game, -3, -1, 4);
-    spawnPlatform(game, 6, -1, 4);
-    spawnPlatform(game, 15, -1, 4);
-
     let level = levels[levelId];
     // ignore top and bottom rows, always have a floor
     // scan each row from bottom(end) to top(beginning)
     let levelRows = level.split(`\n`).reverse();
     levelRows.pop();
     levelRows.shift();
+
+    CFG.GAME_HEIGHT = levelRows.length * ROW_HEIGHT + ROW_OFFSET;
+
+    // spawn the floor
+    spawnPlatform(game, -3, -1, 4);
+    spawnPlatform(game, 6, -1, 4);
+    spawnPlatform(game, 15, -1, 4);
+
     levelRows.forEach(spawnRow(game));
+
   };
 
   Game.LevelDesigner = {
