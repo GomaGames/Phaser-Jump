@@ -18,8 +18,8 @@
     CAMERA_LERP : 0.25,
     ASSETS : {
       GFX : 'GFX',
-      ATLAS_PNG_PATH : '/assets/texture-atlas/jump.png',
-      ATLAS_JSON_PATH : '/assets/texture-atlas/jump.json'
+      ATLAS_PNG_PATH : './assets/texture-atlas/jump.png',
+      ATLAS_JSON_PATH : './assets/texture-atlas/jump.json'
     }
   };
 
