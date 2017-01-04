@@ -24,8 +24,6 @@
     hero = new Game.Hero(game, 500, CFG.GAME_HEIGHT - 200);
     game.camera.follow(hero.sprite, null, CFG.CAMERA_LERP, CFG.CAMERA_LERP);
 
-    let testBaddy = new Game.GhostEnemy(game, 200, 3000);
-    let testBaddy2 = new Game.SparkEnemy(game, 400, 3400);
   };
 
   const update = _ => {
