@@ -70,7 +70,6 @@ real dimensions
   const COL_WIDTH = 25;
   const ROW_HEIGHT = 50;
   const ROW_OFFSET = 100;
-  const ENEMY_HEIGHT = 97;
 
   const levels = {
     1 :
@@ -151,7 +150,7 @@ ________________              |
                               |
                               |
                               |
-                ______________|
+                *_____________|
                               |
                               |
                               |
@@ -175,7 +174,7 @@ _____@__________              |
   const spawnEnemy = (game, x, y, EnemyClass) => {
     x *= COL_WIDTH;
     y *= ROW_HEIGHT;
-    y += ROW_OFFSET + ENEMY_HEIGHT;
+    y += ROW_OFFSET;
     // instantiate the subclass of Enemy
     switch(EnemyClass){
       case Game.GhostEnemy: new Game.GhostEnemy(game, x, y); break;
@@ -195,8 +194,9 @@ _____@__________              |
 
           if( curPart == PARTS.GHOST_ENEMY ){
             spawnEnemy(game, x, y, Game.GhostEnemy);
+          } else if( curPart == PARTS.SPARK_ENEMY ){
+            spawnEnemy(game, x, y, Game.SparkEnemy);
           }
-
 
           return lastPart + curPart;
         } else { // not in sequence
@@ -226,7 +226,7 @@ _____@__________              |
     // spawn the floor
     spawnPlatform(game, -3, -1, 4);
     spawnPlatform(game, 6, -1, 4);
-    spawnPlatform(game, 15, -1, 4);
+    spawnPlatform(game, 17, -1, 4);
 
     levelRows.forEach(spawnRow(game));
 
