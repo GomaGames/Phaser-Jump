@@ -11,10 +11,9 @@
   Game.Enemy = class{
     constructor(game, x, y, spriteLabel){
       this.game = game;
-      this.sprite = this.game.add.sprite(x, y, CFG.ASSETS.GFX, spriteLabel);
+      this.sprite = this.game.add.sprite(x, CFG.GAME_HEIGHT - y, CFG.ASSETS.GFX, spriteLabel);
       this.sprite.scale.set(SCALE);
       this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
-      // this.sprite.body.setSize(30, 80, 52, 25);
 
       // allows passing through platforms
       // #TODO this will be bad for checking other objects though

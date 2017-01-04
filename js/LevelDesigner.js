@@ -58,6 +58,8 @@ real dimensions
     PLATFORM : '_',
     WALL : '|',
     SPACE : ' ',
+    GHOST_ENEMY : '@',
+    SPARK_ENEMY : '*',
   };
   const SEGMENTS = {
     7 : 1,
@@ -148,11 +150,11 @@ ________________              |
                               |
                               |
                               |
-                ______________|
+                *_____________|
                               |
                               |
                               |
-________________              |
+_____@__________              |
                               |
                               |
                               |
@@ -166,6 +168,20 @@ ________________              |
     Game.platformsGroup.add(new Game.Platform(game, x, y, size).sprite);
   };
 
+  /*
+   * type class : GhostEnemy | SparkEnemy
+   */
+  const spawnEnemy = (game, x, y, EnemyClass) => {
+    x *= COL_WIDTH;
+    y *= ROW_HEIGHT;
+    y += ROW_OFFSET;
+    // instantiate the subclass of Enemy
+    switch(EnemyClass){
+      case Game.GhostEnemy: new Game.GhostEnemy(game, x, y); break;
+      case Game.SparkEnemy: new Game.SparkEnemy(game, x, y); break;
+    }
+  };
+
   const spawnRow = game => ( row, y ) => {
     // discover platforms
     let parts = row.split('');
@@ -173,7 +189,15 @@ ________________              |
       .map( cell => cell === PARTS.WALL ? PARTS.SPACE : cell )
       .reduce((lastPart, curPart, x) => {
         // building a platform at the end of a sequence of underscores
-        if( curPart === PARTS.PLATFORM ){ // add to the sequence
+        // enemies count as a platform
+        if( [PARTS.PLATFORM, PARTS.GHOST_ENEMY, PARTS.SPARK_ENEMY].indexOf(curPart) >= 0 ){ // add to the sequence
+
+          if( curPart == PARTS.GHOST_ENEMY ){
+            spawnEnemy(game, x, y, Game.GhostEnemy);
+          } else if( curPart == PARTS.SPARK_ENEMY ){
+            spawnEnemy(game, x, y, Game.SparkEnemy);
+          }
+
           return lastPart + curPart;
         } else { // not in sequence
           if( lastPart.length > 0 ){ // end of a sequence
@@ -202,7 +226,7 @@ ________________              |
     // spawn the floor
     spawnPlatform(game, -3, -1, 4);
     spawnPlatform(game, 6, -1, 4);
-    spawnPlatform(game, 15, -1, 4);
+    spawnPlatform(game, 17, -1, 4);
 
     levelRows.forEach(spawnRow(game));
 
