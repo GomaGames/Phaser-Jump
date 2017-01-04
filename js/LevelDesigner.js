@@ -10,7 +10,7 @@
   level format
 
 `-----------------------------|
-     _______                  |
+     ___o___                  | // o = ammo for spitting, regenerates every 30 seconds
                               |
                               |
                               |
@@ -60,6 +60,7 @@ real dimensions
     SPACE : ' ',
     GHOST_ENEMY : '@',
     SPARK_ENEMY : '*',
+    AMMO : 'o',
   };
   const SEGMENTS = {
     7 : 1,
@@ -78,7 +79,7 @@ real dimensions
                               |
                               |
                               |
-_______     _______    _______|
+___o___     ___o___    ___o___|
                               |
                               |
                               |
@@ -169,16 +170,17 @@ _____@__________              |
   };
 
   /*
-   * type class : GhostEnemy | SparkEnemy
+   * type class : GhostEnemy | SparkEnemy | Ammo
    */
-  const spawnEnemy = (game, x, y, EnemyClass) => {
+  const spawn = (game, x, y, SpawnableClass) => {
     x *= COL_WIDTH;
     y *= ROW_HEIGHT;
     y += ROW_OFFSET;
     // instantiate the subclass of Enemy
-    switch(EnemyClass){
+    switch(SpawnableClass){
       case Game.GhostEnemy: new Game.GhostEnemy(game, x, y); break;
       case Game.SparkEnemy: new Game.SparkEnemy(game, x, y); break;
+      case Game.Ammo: new Game.Ammo(game, x, y); break;
     }
   };
 
@@ -190,12 +192,19 @@ _____@__________              |
       .reduce((lastPart, curPart, x) => {
         // building a platform at the end of a sequence of underscores
         // enemies count as a platform
-        if( [PARTS.PLATFORM, PARTS.GHOST_ENEMY, PARTS.SPARK_ENEMY].indexOf(curPart) >= 0 ){ // add to the sequence
+        if([
+          PARTS.PLATFORM,
+          PARTS.GHOST_ENEMY,
+          PARTS.SPARK_ENEMY,
+          PARTS.AMMO
+        ].indexOf(curPart) >= 0 ){ // add to the sequence
 
-          if( curPart == PARTS.GHOST_ENEMY ){
-            spawnEnemy(game, x, y, Game.GhostEnemy);
-          } else if( curPart == PARTS.SPARK_ENEMY ){
-            spawnEnemy(game, x, y, Game.SparkEnemy);
+          if( curPart === PARTS.GHOST_ENEMY ){
+            spawn(game, x, y, Game.GhostEnemy);
+          } else if( curPart === PARTS.SPARK_ENEMY ){
+            spawn(game, x, y, Game.SparkEnemy);
+          } else if( curPart === PARTS.AMMO ){
+            spawn(game, x, y, Game.Ammo);
           }
 
           return lastPart + curPart;
