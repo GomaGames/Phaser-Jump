@@ -1,6 +1,6 @@
 (( Phaser, Game, CFG ) => {
-  let hero;
-  Game.platformsGroup;
+  Game.hero = null;
+  Game.platformsGroup = null;
   Game.cursors = null;
 
   const preload = _ => {
@@ -21,8 +21,8 @@
     // Level loader sets CFG.GAME_HEIGHT
     game.world.setBounds(0, 0, CFG.GAME_WIDTH, CFG.GAME_HEIGHT);
 
-    hero = new Game.Hero(game, 500, CFG.GAME_HEIGHT - 200);
-    game.camera.follow(hero.sprite, null, CFG.CAMERA_LERP, CFG.CAMERA_LERP);
+    Game.hero = new Game.Hero(game, 500, CFG.GAME_HEIGHT - 200);
+    game.camera.follow(Game.hero.sprite, null, CFG.CAMERA_LERP, CFG.CAMERA_LERP);
 
   };
 

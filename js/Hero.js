@@ -17,6 +17,7 @@
   Game.Hero = class{
     constructor(game, x, y){
       this.game = game;
+      this.ammo = [];
       this.sprite = this.game.add.sprite(x, y, CFG.ASSETS.GFX);
       this.sprite.scale.set(SCALE);
       this.game.physics.enable(this.sprite, Phaser.Physics.ARCADE);
@@ -75,6 +76,14 @@
         this.sprite.x = CFG.GAME_WIDTH;
       }
 
+    }
+
+    collect(item){
+      if( item instanceof Game.Ammo ){
+        this.ammo.push(item);
+      } else {
+        throw TypeError(`Cannot collect unknown type: ${ item }`);
+      }
     }
   };
 
