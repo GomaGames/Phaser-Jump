@@ -29,6 +29,10 @@
       }
       this.sprite.x += this.vx;
 
+      if(this.sprite.x > CFG.GAME_WIDTH || this.sprite.x < -this.sprite.width){
+        this.sprite.destroy();
+      }
+
     }
 
     collect(){
