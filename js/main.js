@@ -33,6 +33,16 @@
   };
 
   const update = _ => {
+    if( Game.enemiesGroup.children.some( enemySprite =>
+          enemySprite.overlap(Game.hero.sprite))
+    ){
+      gameOver();
+    }
+  };
+
+  const gameOver = _ => {
+    game.state.destroy();
+    game.add.text(240, 400, 'GAME IS OVER', { fill: '#232323' });
   };
 
   const game = new Phaser.Game(CFG.STAGE_WIDTH, CFG.STAGE_HEIGHT, Phaser.AUTO, CFG.GAME_CONTAINER_ID, { preload, create, update });
