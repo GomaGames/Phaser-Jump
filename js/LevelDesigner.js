@@ -178,8 +178,12 @@ _____@__________              |
     y += ROW_OFFSET;
     // instantiate the subclass of Enemy
     switch(SpawnableClass){
-      case Game.GhostEnemy: new Game.GhostEnemy(game, x, y); break;
-      case Game.SparkEnemy: new Game.SparkEnemy(game, x, y); break;
+      case Game.GhostEnemy:
+        Game.enemiesGroup.add(new Game.GhostEnemy(game, x, y).sprite);
+        break;
+      case Game.SparkEnemy:
+        Game.enemiesGroup.add(new Game.SparkEnemy(game, x, y).sprite);
+        break;
       case Game.Ammo: new Game.Ammo(game, x, y); break;
     }
   };

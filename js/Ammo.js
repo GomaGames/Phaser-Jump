@@ -33,6 +33,18 @@
         this.sprite.destroy();
       }
 
+      if(this.vx !== 0){
+        let enemiesHit = Game.enemiesGroup.children.filter(enemySprite =>
+          enemySprite.overlap(this.sprite)
+        );
+        if(enemiesHit.length > 0){
+          enemiesHit.forEach( enemySprite => enemySprite.destroy() );
+
+          // display explosion animation?
+          this.sprite.destroy();
+        }
+      }
+
     }
 
     collect(){

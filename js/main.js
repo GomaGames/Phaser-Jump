@@ -1,6 +1,7 @@
 (( Phaser, Game, CFG ) => {
   Game.hero = null;
   Game.platformsGroup = null;
+  Game.enemiesGroup = null;
   Game.cursors = null;
 
   const preload = _ => {
@@ -11,6 +12,9 @@
     game.physics.startSystem(Phaser.Physics.ARCADE);
     game.physics.arcade.gravity.y = CFG.GRAVITY;
     game.stage.backgroundColor = CFG.BG_COLOR;
+
+    // keep track of enemies
+    Game.enemiesGroup = game.add.group();
 
     // add some platforms
     Game.platformsGroup = game.add.group();
