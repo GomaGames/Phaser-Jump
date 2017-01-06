@@ -15,6 +15,7 @@
     constructor(game, x, y){
       this.game = game;
       this.collected = false;
+      this.vx = 0;
       this.sprite = this.game.add.sprite(x + SPAWN_X_OFFSET, CFG.GAME_HEIGHT - y + SPAWN_Y_OFFSET, CFG.ASSETS.GFX, 'power1-3.png');
       this.sprite.scale.set(SCALE);
 
@@ -26,6 +27,7 @@
         Game.hero.collect(this);
         this.collect();
       }
+      this.sprite.x += this.vx;
 
     }
 

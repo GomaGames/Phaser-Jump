@@ -12,8 +12,6 @@
     game.physics.arcade.gravity.y = CFG.GRAVITY;
     game.stage.backgroundColor = CFG.BG_COLOR;
 
-    Game.cursors = game.input.keyboard.createCursorKeys();
-
     // add some platforms
     Game.platformsGroup = game.add.group();
     Game.LevelDesigner.load(game, 1);
@@ -23,6 +21,10 @@
 
     Game.hero = new Game.Hero(game, 500, CFG.GAME_HEIGHT - 200);
     game.camera.follow(Game.hero.sprite, null, CFG.CAMERA_LERP, CFG.CAMERA_LERP);
+
+    Game.cursors = game.input.keyboard.createCursorKeys();
+    Game.cursors.fire = game.input.keyboard.addKey(Phaser.KeyCode.SPACEBAR);
+    Game.cursors.fire.onUp.add( Game.hero.handleFire.bind(Game.hero) );
 
   };
 
